@@ -3,6 +3,8 @@ import json
 import keyboard
 
 macros = json.load((open("config.json", "r")))
+#  {   "channel": "1", "onchange": "", "onincrease": "", "ondecrease": "", "granularity": 8 },
+
 keymap=[0 for i in range(100)]
 
 with mido.open_input() as inport:
@@ -21,7 +23,8 @@ with mido.open_input() as inport:
                         print("channel: " + str(channel))
                         for entry in macros["macros"]:
                             if int(entry["channel"]) == int(channel):
-                                for k in entry["macro"]:
-                                    print("sending " + k)
-                                    keyboard.press_and_release(k)
+                                if int(channel_value)) % int(entry["granularity"]) == 0:
+                                    for k in entry["macro"]:
+                                        print("sending " + k)
+                                        keyboard.press_and_release(k)
 
