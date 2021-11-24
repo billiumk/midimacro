@@ -26,8 +26,11 @@ if len(ports) == 0:
     sys.stderr.write("ERROR: Couldn't find midi device\n")
     exit(1)
 
+print(ports)
+pnum = input("Please select a midi port number: ")
+        
 # connect and monitor the device messages
-with mido.open_input(ports[0]) as inport:
+with mido.open_input(ports[int(pnum)]) as inport:
 
     for msg in inport:
 
